@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIM Student Hub | Home</title>
+    <link rel="stylesheet" href="HomePage.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">H</div>
+          <span>HIM Student Hub</span>
+        </div>
+
+        <nav class="nav">
+          <a href="#">Home</a>
+          <a href="#schedule">Schedule</a>
+          <a href="MarksPage.html">Marks</a>
+          <div class="student-info" id="studentInfo" style="margin-left: auto; display: none;">
+            <span class="student-name" id="studentName"></span>
+            <a href="#" onclick="logout(); return false;" class="btn ghost-btn">Logout</a>
+          </div>
+          <div id="noStudent" style="margin-left: auto;">
+            <a href="LoginPage.html" class="btn ghost-btn">Log in</a>
+            <a href="RegistrationPage.html" class="btn primary-btn">Get started</a>
+          </div>
+        </nav>
+      </header>
+
+      <div class="welcome">
+        <div class="student-profile" id="studentProfile" style="display: none;">
+          <div class="profile-card">
+            <div class="profile-avatar" id="studentAvatar">S</div>
+            <div class="profile-details">
+              <p class="profile-label">Welcome back,</p>
+              <h2 class="profile-name" id="profileName"></h2>
+              <p class="profile-email" id="profileEmail"></p>
+            </div>
+          </div>
+        </div>
+        <h1>Welcome to HIM Student Hub</h1>
+        <p>View your class timetable and manage your academic schedule efficiently.</p>
+      </div>
+
+      <section class="profile-layout" id="profile">
+        <div class="profile-panel">
+          <div class="panel-header">
+            <h2>Student Profile</h2>
+          </div>
+
+          <div class="profile-field-grid">
+            <div class="profile-field">
+              <span>Roll Number</span>
+              <strong id="profileRollNumber">21CS101</strong>
+            </div>
+            <div class="profile-field">
+              <span>Name</span>
+              <strong id="profileFullName">Student Name</strong>
+            </div>
+            <div class="profile-field">
+              <span>Course</span>
+              <strong id="profileCourse">B.Tech</strong>
+            </div>
+            <div class="profile-field">
+              <span>Branch</span>
+              <strong id="profileBranch">Computer Science</strong>
+            </div>
+            <div class="profile-field">
+              <span>Phone Number</span>
+              <strong id="profilePhone">+91 9876543210</strong>
+            </div>
+            <div class="profile-field">
+              <span>Email</span>
+              <strong id="profileEmailDetail">student@example.com</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="marks-panel">
+          <div class="panel-header">
+            <h2>Academic Record</h2>
+          </div>
+
+          <div class="marks-summary-box">
+            <p>View detailed marks for all theory subjects and assessments.</p>
+            <a href="MarksPage.html" class="marks-link-btn">Open Marks Page</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="timetable-section" id="schedule">
+        <div class="section-title">
+          <h2>Class Timetable</h2>
+          <div class="day-chips" aria-label="Timetable days">
+            <button class="day-chip active" data-day="all">All</button>
+            <button class="day-chip" data-day="Mon">Mon</button>
+            <button class="day-chip" data-day="Tue">Tue</button>
+            <button class="day-chip" data-day="Wed">Wed</button>
+            <button class="day-chip" data-day="Thu">Thu</button>
+            <button class="day-chip" data-day="Fri">Fri</button>
+          </div>
+        </div>
+
+        <div class="table-wrapper timetable-box">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th class="section-head">SECTION /<br />LECTURE</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-day="Mon">
+                <td class="day-row-mark">MON</td>
+                <td>PT</td>
+                <td>PT</td>
+                <td colspan="2">JAVA TRAINING<br />(VKR)</td>
+                <td>DBMS<br />(SNR)</td>
+                <td>DAA<br />(RS)</td>
+                <td>WT<br />(RO)</td>
+                <td>OOSD<br />(AP)</td>
+              </tr>
+
+              <tr data-day="Tue">
+                <td class="day-row-mark">TUE</td>
+                <td>DBMS<br />(SNR)</td>
+                <td>WT<br />(RO)</td>
+                <td>DAA<br />(RS)</td>
+                <td>DMW<br />(SC)</td>
+                <td colspan="2">JAVA TRAINING<br />(VKR)</td>
+                <td>DBMS<br />(SNR)</td>
+                <td>OOSD<br />(AP)</td>
+              </tr>
+
+              <tr data-day="Wed">
+                <td class="day-row-mark">WED</td>
+                <td>DAA<br />(RS)</td>
+                <td>DBMS<br />(SNR)</td>
+                <td colspan="2">WT LAB<br />(HU &amp; RO)</td>
+                <td colspan="2">SS<br />(VB)</td>
+                <td>COI<br />(AS)</td>
+                <td>OOSD<br />(AP)</td>
+              </tr>
+
+              <tr data-day="Thu">
+                <td class="day-row-mark">THU</td>
+                <td>DMW<br />(SC)</td>
+                <td>WT<br />(RO)</td>
+                <td>DAA<br />(RS)</td>
+                <td>DAA<br />(RS)</td>
+                <td>OOSD<br />(AP)</td>
+                <td>DMW<br />(SC)</td>
+                <td colspan="2">DBMS LAB<br />(SNR &amp; AN)</td>
+              </tr>
+
+              <tr data-day="Fri">
+                <td class="day-row-mark">FRI</td>
+                <td>DMW<br />(SC)</td>
+                <td>DBMS<br />(SNR)</td>
+                <td>WT<br />(RO)</td>
+                <td>OOSD<br />(AP)</td>
+                <td>WT<br />(RO)</td>
+                <td>COI<br />(AS)</td>
+                <td colspan="2">DAA LAB<br />(RS &amp; NP)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const defaultMarks = [
+        { subject: 'Java Training', threePt: 18, sessional: 22 },
+        { subject: 'DBMS', threePt: 17, sessional: 20 },
+        { subject: 'DAA', threePt: 16, sessional: 19 },
+        { subject: 'WT', threePt: 15, sessional: 18 },
+        { subject: 'OOSD', threePt: 18, sessional: 21 },
+        { subject: 'DMW', threePt: 14, sessional: 17 },
+        { subject: 'SS', threePt: 16, sessional: 19 }
+      ];
+
+      function renderMarks(marks) {
+        const container = document.getElementById('marksTableBody');
+        container.innerHTML = '';
+
+        (marks || defaultMarks).forEach((item) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item.subject}</td>
+            <td>${item.threePt}</td>
+            <td>${item.sessional}</td>
+          `;
+          container.appendChild(row);
+        });
+      }
+
+      function loadStudentInfo() {
+        const studentData = localStorage.getItem('studentInfo');
+        const defaultStudent = {
+          fullName: 'Student Name',
+          email: 'student@example.com',
+          rollNumber: '21CS101',
+          course: 'B.Tech',
+          branch: 'Computer Science',
+          phone: '+91 9876543210',
+          marks: defaultMarks
+        };
+
+        const student = studentData ? { ...defaultStudent, ...JSON.parse(studentData), marks: JSON.parse(studentData).marks || defaultMarks } : defaultStudent;
+
+        const studentInfoDiv = document.getElementById('studentInfo');
+        const noStudentDiv = document.getElementById('noStudent');
+        const studentProfileDiv = document.getElementById('studentProfile');
+
+        document.getElementById('studentName').textContent = student.fullName;
+        document.getElementById('profileName').textContent = student.fullName;
+        document.getElementById('profileEmail').textContent = student.email;
+        document.getElementById('profileRollNumber').textContent = student.rollNumber || '21CS101';
+        document.getElementById('profileFullName').textContent = student.fullName;
+        document.getElementById('profileCourse').textContent = student.course || 'B.Tech';
+        document.getElementById('profileBranch').textContent = student.branch || 'Computer Science';
+        document.getElementById('profilePhone').textContent = student.phone || '+91 9876543210';
+        document.getElementById('profileEmailDetail').textContent = student.email;
+
+        const firstLetter = (student.fullName || 'S').charAt(0).toUpperCase();
+        document.getElementById('studentAvatar').textContent = firstLetter;
+
+        renderMarks(student.marks || defaultMarks);
+
+        if (studentData) {
+          studentInfoDiv.style.display = 'flex';
+          noStudentDiv.style.display = 'none';
+          studentProfileDiv.style.display = 'block';
+        } else {
+          studentInfoDiv.style.display = 'none';
+          noStudentDiv.style.display = 'flex';
+          studentProfileDiv.style.display = 'none';
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem('studentInfo');
+        location.reload();
+      }
+
+      loadStudentInfo();
+
+      const dayChips = document.querySelectorAll('.day-chip');
+      const timetableRows = document.querySelectorAll('tbody tr');
+
+      dayChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const selectedDay = chip.dataset.day;
+
+          dayChips.forEach((btn) => btn.classList.toggle('active', btn === chip));
+
+          timetableRows.forEach((row) => {
+            const matches = selectedDay === 'all' || row.dataset.day === selectedDay;
+            row.style.display = matches ? '' : 'none';
+            row.classList.toggle('highlight-row', matches && selectedDay !== 'all');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

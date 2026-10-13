@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIM Student Hub | Login</title>
+    <link rel="stylesheet" href="LoginPage.css"/>
+  </head>
+  <body>
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+
+    <main class="login-shell">
+      <section class="brand-panel">
+        <div class="brand-badge">
+          <span class="brand-logo">H</span>
+          HIM Student Hub
+        </div>
+
+        <h1>Welcome back, <span>student.</span></h1>
+        <p>
+          Stay on top of classes, assignments, deadlines, and revision plans with one smart study companion.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            Track classes and assignment deadlines
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            Build study plans that fit your routine
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            Keep your academic progress secure and organized
+          </div>
+        </div>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-wrap">
+          <div class="top-row">
+            <h2 class="form-title">Sign in</h2>
+            <a href="RegistrationPage.html" class="signup-link">Create account</a>
+          </div>
+
+          <form id="loginForm">
+            <div class="field">
+              <label for="email">Email address</label>
+              <div class="input-wrap">
+                <span class="icon">✉</span>
+                <input id="email" type="email" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="input-wrap">
+                <span class="icon">🔒</span>
+                <input id="password" type="password" placeholder="Enter your password" required />
+              </div>
+            </div>
+
+            <div class="options">
+              <label class="checkbox">
+                <input type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="submit-btn">Sign in</button>
+            <a href="TeacherLogin.html" class="teacher-link">Teacher Login</a>
+            <div class="status" id="statusText" aria-live="polite"></div>
+          </form>
+
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const form = document.getElementById('loginForm');
+      const statusText = document.getElementById('statusText');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!email || !password) {
+          statusText.textContent = 'Please enter both email and password.';
+          statusText.style.color = '#fca5a5';
+          return;
+        }
+
+        statusText.textContent = 'Welcome back! Redirecting to your dashboard...';
+        statusText.style.color = '#86efac';
+
+        // Save student info to localStorage
+        const studentData = {
+          email: email,
+          fullName: email.split('@')[0] // Use email prefix as name if not available
+        };
+        localStorage.setItem('studentInfo', JSON.stringify(studentData));
+
+        setTimeout(() => {
+          window.location.href = 'HomePage.html';
+        }, 1200);
+      });
+    </script>
+  </body>
+</html>

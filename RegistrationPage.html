@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIM Student Hub | Register</title>
+    <link rel="stylesheet" href="LoginPage.css" />
+  </head>
+  <body>
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+
+    <main class="login-shell">
+      <section class="brand-panel">
+        <div class="brand-badge">
+          <span class="brand-logo">H</span>
+          HIM Student Hub
+        </div>
+
+        <h1>Create your <span>student profile.</span></h1>
+        <p>
+          Join a smarter study platform to manage classes, homework, revision sessions, and academic goals in one place.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            Organize your timetable and course workload
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            Stay ahead with assignment and exam reminders
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            Keep your learning progress secure and focused
+          </div>
+        </div>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-wrap">
+          <div class="top-row">
+            <h2 class="form-title">Register</h2>
+            <a href="LoginPage.html" class="signup-link">Sign in</a>
+          </div>
+
+          <form id="registerForm">
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <div class="input-wrap">
+                <span class="icon">👤</span>
+                <input id="fullName" type="text" placeholder="John Doe" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address</label>
+              <div class="input-wrap">
+                <span class="icon">✉</span>
+                <input id="email" type="email" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="rollNumber">Roll number</label>
+              <div class="input-wrap">
+                <span class="icon">#</span>
+                <input id="rollNumber" type="text" placeholder="21CS101" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="course">Course</label>
+              <div class="input-wrap">
+                <span class="icon">📚</span>
+                <input id="course" type="text" placeholder="B.Tech" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="branch">Branch</label>
+              <div class="input-wrap">
+                <span class="icon">🏫</span>
+                <input id="branch" type="text" placeholder="Computer Science" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <div class="input-wrap">
+                <span class="icon">☎</span>
+                <input id="phone" type="tel" placeholder="+91 9876543210" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="input-wrap">
+                <span class="icon">🔒</span>
+                <input id="password" type="password" placeholder="Create a password" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="confirmPassword">Confirm password</label>
+              <div class="input-wrap">
+                <span class="icon">🔐</span>
+                <input id="confirmPassword" type="password" placeholder="Repeat your password" required />
+              </div>
+            </div>
+
+            <div class="options">
+              <label class="checkbox">
+                <input type="checkbox" required />
+                <span>I agree to the terms</span>
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn">Create account</button>
+            <div class="status" id="statusText" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const form = document.getElementById('registerForm');
+      const statusText = document.getElementById('statusText');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const rollNumber = document.getElementById('rollNumber').value.trim();
+        const course = document.getElementById('course').value.trim();
+        const branch = document.getElementById('branch').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+        if (!fullName || !email || !rollNumber || !course || !branch || !phone || !password || !confirmPassword) {
+          statusText.textContent = 'Please complete all fields.';
+          statusText.style.color = '#fca5a5';
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          statusText.textContent = 'Passwords do not match.';
+          statusText.style.color = '#fca5a5';
+          return;
+        }
+
+        statusText.textContent = 'Account created successfully! Redirecting...';
+        statusText.style.color = '#86efac';
+
+        // Save student profile data to localStorage
+        const studentData = {
+          fullName: fullName,
+          email: email,
+          rollNumber: rollNumber,
+          course: course,
+          branch: branch,
+          phone: phone,
+          marks: [
+            { subject: 'Java Training', threePt: 18, sessional: 22 },
+            { subject: 'DBMS', threePt: 17, sessional: 20 },
+            { subject: 'DAA', threePt: 16, sessional: 19 },
+            { subject: 'WT', threePt: 15, sessional: 18 },
+            { subject: 'OOSD', threePt: 18, sessional: 21 },
+            { subject: 'DMW', threePt: 14, sessional: 17 },
+            { subject: 'SS', threePt: 16, sessional: 19 }
+          ]
+        };
+        localStorage.setItem('studentInfo', JSON.stringify(studentData));
+
+        setTimeout(() => {
+          window.location.href = 'HomePage.html';
+        }, 1200);
+      });
+    </script>
+  </body>
+</html>

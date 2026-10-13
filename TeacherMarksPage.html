@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Marks Update</title>
+    <link rel="stylesheet" href="HomePage.css" />
+    <style>
+      body {
+        background: linear-gradient(140deg, #0b1020, #111827);
+      }
+
+      .teacher-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 20px 60px;
+      }
+
+      .teacher-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .teacher-title {
+        font-size: clamp(2rem, 2vw + 1rem, 3rem);
+        letter-spacing: -0.06em;
+        margin: 0;
+      }
+
+      .teacher-panel {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        border-radius: 22px;
+        padding: 24px;
+        margin-bottom: 26px;
+      }
+
+      .filter-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .filter-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .filter-field label {
+        color: #cbd5e1;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .filter-field select,
+      .filter-field input {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(15, 23, 42, 0.9);
+        color: #f8fafc;
+        padding: 0 14px;
+        outline: none;
+      }
+
+      .teacher-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 22px;
+        flex-wrap: wrap;
+      }
+
+      .teacher-table-wrap {
+        background: #ffffff;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+      }
+
+      .teacher-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .teacher-table th,
+      .teacher-table td {
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        padding: 12px 10px;
+        text-align: center;
+        color: #111827;
+      }
+
+      .teacher-table th {
+        background: linear-gradient(135deg, #111827, #374151);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.72rem;
+      }
+
+      .teacher-table td input {
+        width: 100%;
+        border: 1px solid rgba(15, 23, 42, 0.18);
+        border-radius: 8px;
+        padding: 10px 8px;
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      .teacher-status {
+        margin-top: 20px;
+        min-height: 24px;
+        color: #86efac;
+        font-weight: 600;
+      }
+
+      .teacher-link-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #7c3aed, #4f8cff);
+        color: white;
+        border-radius: 12px;
+        padding: 10px 18px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .filter-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .filter-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .teacher-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="teacher-page">
+      <header class="teacher-header">
+        <div>
+          <div class="brand" style="margin-bottom: 10px; color: #fff;">
+            <div class="brand-mark">H</div>
+            <span>HIM Teacher Portal</span>
+          </div>
+          <h1 class="teacher-title">Update Student Marks</h1>
+        </div>
+        <a href="LoginPage.html" class="teacher-link-btn">Logout</a>
+      </header>
+
+      <section class="teacher-panel">
+        <div class="filter-grid">
+          <div class="filter-field">
+            <label for="sectionSelect">Section</label>
+            <select id="sectionSelect">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="branchSelect">Branch</label>
+            <select id="branchSelect">
+              <option value="CSE">CSE</option>
+              <option value="ECE">ECE</option>
+              <option value="ME">ME</option>
+              <option value="IT">IT</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="rollNumberSelect">Roll Number</label>
+            <select id="rollNumberSelect">
+              <option value="21CS101">21CS101</option>
+              <option value="21CS102">21CS102</option>
+              <option value="21CS103">21CS103</option>
+              <option value="21CS104">21CS104</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="studentName">Student Name</label>
+            <input id="studentName" type="text" value="Aditi Sharma" />
+          </div>
+        </div>
+
+        <div class="teacher-actions">
+          <button class="btn primary-btn" id="loadStudentBtn">Load Student</button>
+          <button class="btn ghost-btn" id="saveMarksBtn">Save Marks</button>
+        </div>
+      </section>
+
+      <section class="teacher-panel">
+        <div class="teacher-table-wrap">
+          <table class="teacher-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>PT 1</th>
+                <th>PT 2</th>
+                <th>PT 3</th>
+                <th>Sessional</th>
+                <th>PUT</th>
+              </tr>
+            </thead>
+            <tbody id="marksBody">
+              <tr>
+                <td>COI</td>
+                <td><input type="number" value="18" /></td>
+                <td><input type="number" value="20" /></td>
+                <td><input type="number" value="19" /></td>
+                <td><input type="number" value="22" /></td>
+                <td><input type="number" value="65" /></td>
+              </tr>
+              <tr>
+                <td>OOSD</td>
+                <td><input type="number" value="17" /></td>
+                <td><input type="number" value="19" /></td>
+                <td><input type="number" value="18" /></td>
+                <td><input type="number" value="21" /></td>
+                <td><input type="number" value="68" /></td>
+              </tr>
+              <tr>
+                <td>DBMS</td>
+                <td><input type="number" value="19" /></td>
+                <td><input type="number" value="21" /></td>
+                <td><input type="number" value="20" /></td>
+                <td><input type="number" value="23" /></td>
+                <td><input type="number" value="70" /></td>
+              </tr>
+              <tr>
+                <td>DAA</td>
+                <td><input type="number" value="16" /></td>
+                <td><input type="number" value="18" /></td>
+                <td><input type="number" value="17" /></td>
+                <td><input type="number" value="20" /></td>
+                <td><input type="number" value="66" /></td>
+              </tr>
+              <tr>
+                <td>WT</td>
+                <td><input type="number" value="18" /></td>
+                <td><input type="number" value="17" /></td>
+                <td><input type="number" value="19" /></td>
+                <td><input type="number" value="22" /></td>
+                <td><input type="number" value="64" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="teacher-status" id="teacherStatus"></div>
+      </section>
+    </div>
+
+    <script>
+      const loadStudentBtn = document.getElementById('loadStudentBtn');
+      const saveMarksBtn = document.getElementById('saveMarksBtn');
+      const teacherStatus = document.getElementById('teacherStatus');
+      const sectionSelect = document.getElementById('sectionSelect');
+      const branchSelect = document.getElementById('branchSelect');
+      const rollNumberSelect = document.getElementById('rollNumberSelect');
+      const studentNameInput = document.getElementById('studentName');
+
+      const studentCatalog = {
+        A: {
+          CSE: {
+            '21CS101': 'Aditi Sharma',
+            '21CS102': 'Rohit Verma',
+            '21CS103': 'Sneha Singh',
+            '21CS104': 'Mohit Kumar'
+          },
+          ECE: {
+            '21CS101': 'Priya Nair',
+            '21CS102': 'Arun Das',
+            '21CS103': 'Nisha Roy',
+            '21CS104': 'Karan Mehta'
+          }
+        },
+        B: {
+          CSE: {
+            '21CS101': 'Ananya Patel',
+            '21CS102': 'Vikas Shah',
+            '21CS103': 'Megha Joshi',
+            '21CS104': 'Rajat Sinha'
+          }
+        },
+        C: {
+          IT: {
+            '21CS101': 'Ishita Gupta',
+            '21CS102': 'Harsh Thakur',
+            '21CS103': 'Divya Rao',
+            '21CS104': 'Saurabh Yadav'
+          }
+        }
+      };
+
+      function updateStudentName() {
+        const section = sectionSelect.value;
+        const branch = branchSelect.value;
+        const roll = rollNumberSelect.value;
+        const names = studentCatalog[section]?.[branch] || {};
+        studentNameInput.value = names[roll] || 'Student Name';
+      }
+
+      sectionSelect.addEventListener('change', updateStudentName);
+      branchSelect.addEventListener('change', updateStudentName);
+      rollNumberSelect.addEventListener('change', updateStudentName);
+
+      loadStudentBtn.addEventListener('click', () => {
+        updateStudentName();
+        teacherStatus.textContent = 'Student details loaded successfully.';
+        teacherStatus.style.color = '#86efac';
+      });
+
+      saveMarksBtn.addEventListener('click', () => {
+        const rows = Array.from(document.querySelectorAll('#marksBody tr'));
+        const payload = {
+          section: sectionSelect.value,
+          branch: branchSelect.value,
+          rollNumber: rollNumberSelect.value,
+          studentName: studentNameInput.value,
+          marks: rows.map((row) => ({
+            subject: row.children[0].textContent.trim(),
+            pt1: row.children[1].querySelector('input').value,
+            pt2: row.children[2].querySelector('input').value,
+            pt3: row.children[3].querySelector('input').value,
+            sessional: row.children[4].querySelector('input').value,
+            put: row.children[5].querySelector('input').value,
+          }))
+        };
+
+        localStorage.setItem('teacherMarksData', JSON.stringify(payload));
+        teacherStatus.textContent = 'Marks saved for ' + payload.studentName + ' in ' + payload.section + ' / ' + payload.branch + '.';
+        teacherStatus.style.color = '#86efac';
+      });
+
+      updateStudentName();
+    </script>
+  </body>
+</html>

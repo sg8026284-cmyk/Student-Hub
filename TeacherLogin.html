@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIM Teacher Portal | Login</title>
+    <link rel="stylesheet" href="LoginPage.css" />
+  </head>
+  <body>
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+
+    <main class="login-shell">
+      <section class="brand-panel">
+        <div class="brand-badge">
+          <span class="brand-logo">T</span>
+          Teacher Portal
+        </div>
+
+        <h1>Manage results with <span>confidence.</span></h1>
+        <p>
+          Update student marks, track academic performance by section and branch, and keep all results organized in one place.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            Update marks by section, branch, and roll number
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📘</div>
+            Monitor internal assessments and university marks
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            Secure teacher-only access
+          </div>
+        </div>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-wrap">
+          <div class="top-row">
+            <h2 class="form-title">Teacher Login</h2>
+            <a href="LoginPage.html" class="signup-link">Student login</a>
+          </div>
+
+          <form id="teacherLoginForm">
+            <div class="field">
+              <label for="teacherEmail">Email address</label>
+              <div class="input-wrap">
+                <span class="icon">✉</span>
+                <input id="teacherEmail" type="email" placeholder="teacher@him.edu" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="teacherPassword">Password</label>
+              <div class="input-wrap">
+                <span class="icon">🔒</span>
+                <input id="teacherPassword" type="password" placeholder="Enter your password" required />
+              </div>
+            </div>
+
+            <div class="teacher-demo-box">
+              Demo login: <strong>teacher@him.edu</strong> / <strong>teacher123</strong>
+            </div>
+
+            <button type="submit" class="submit-btn">Login as Teacher</button>
+            <div class="status" id="teacherStatus" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const teacherForm = document.getElementById('teacherLoginForm');
+      const teacherStatus = document.getElementById('teacherStatus');
+
+      teacherForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('teacherEmail').value.trim();
+        const password = document.getElementById('teacherPassword').value.trim();
+
+        if (!email || !password) {
+          teacherStatus.textContent = 'Please enter both email and password.';
+          teacherStatus.style.color = '#fca5a5';
+          return;
+        }
+
+        if (email === 'teacher@him.edu' && password === 'teacher123') {
+          localStorage.setItem('teacherSession', JSON.stringify({ name: 'Faculty', email: email }));
+          teacherStatus.textContent = 'Welcome teacher! Redirecting...';
+          teacherStatus.style.color = '#86efac';
+
+          setTimeout(() => {
+            window.location.href = 'TeacherMarksPage.html';
+          }, 900);
+        } else {
+          teacherStatus.textContent = 'Invalid teacher credentials. Please use the demo login shown above.';
+          teacherStatus.style.color = '#fca5a5';
+        }
+      });
+    </script>
+  </body>
+</html>

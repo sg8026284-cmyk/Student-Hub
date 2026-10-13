@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIM Student Hub | Marks</title>
+    <link rel="stylesheet" href="HomePage.css" />
+  </head>
+  <body>
+    <div class="marks-page">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">H</div>
+          <span>HIM Student Hub</span>
+        </div>
+
+        <nav class="nav">
+          <a href="HomePage.html">Home</a>
+          <a href="HomePage.html#schedule">Schedule</a>
+          <a href="MarksPage.html">Marks</a>
+        </nav>
+      </header>
+
+      <main class="marks-shell">
+        <div class="marks-header">
+          <h1>Student Marks</h1>
+          <a href="HomePage.html" class="back-link">← Back to Home</a>
+        </div>
+
+        <div class="marks-card">
+          <div class="mark-badge">
+            <span>Student Name</span>
+            <strong id="marksStudentName">Student Name</strong>
+          </div>
+          <div class="mark-badge">
+            <span>Roll Number</span>
+            <strong id="marksRollNumber">21CS101</strong>
+          </div>
+          <div class="mark-badge">
+            <span>Course / Branch</span>
+            <strong id="marksCourseBranch">B.Tech / CSE</strong>
+          </div>
+        </div>
+
+        <div class="marks-page-table-wrap">
+          <table class="marks-page-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>PT 1</th>
+                <th>PT 2</th>
+                <th>PT 3</th>
+                <th>Sessional</th>
+                <th>PUT</th>
+              </tr>
+            </thead>
+            <tbody id="marksPageBody"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const marksData = [
+        { subject: 'COI', pt1: 18, pt2: 17, pt3: 19, sessional: 20, put: 22 },
+        { subject: 'OOSD', pt1: 16, pt2: 18, pt3: 17, sessional: 21, put: 23 },
+        { subject: 'DMW', pt1: 15, pt2: 16, pt3: 17, sessional: 18, put: 20 },
+        { subject: 'DAA', pt1: 17, pt2: 18, pt3: 19, sessional: 20, put: 22 },
+        { subject: 'WT', pt1: 14, pt2: 16, pt3: 17, sessional: 19, put: 21 },
+        { subject: 'DBMS', pt1: 16, pt2: 17, pt3: 18, sessional: 19, put: 24 }
+      ];
+
+      function renderMarksPage() {
+        const studentData = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+        const body = document.getElementById('marksPageBody');
+
+        document.getElementById('marksStudentName').textContent = studentData.fullName || 'Student Name';
+        document.getElementById('marksRollNumber').textContent = studentData.rollNumber || '21CS101';
+        document.getElementById('marksCourseBranch').textContent = `${studentData.course || 'B.Tech'} / ${studentData.branch || 'CSE'}`;
+
+        body.innerHTML = '';
+        marksData.forEach((item) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item.subject}</td>
+            <td>${item.pt1}</td>
+            <td>${item.pt2}</td>
+            <td>${item.pt3}</td>
+            <td>${item.sessional}</td>
+            <td>${item.put}</td>
+          `;
+          body.appendChild(row);
+        });
+      }
+
+      renderMarksPage();
+    </script>
+  </body>
+</html>
